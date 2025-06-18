@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Países</title>
+</head>
+<body>
+    <h1>Listado de Países</h1>
+
+    <div class="">
+        <p>Total de países: {{ numero_paises }}</p>
+    </div>
+
+    {% if paises %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Capital</th>
+                    <th>Número de provincias</th>
+                    <th>Número de habitantes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pais in paises %}
+                <tr>
+                    <td>{{ pais.nombre }}</td>
+                    <td>{{ pais.capital }}</td>
+                    <td>{{ pais.numero_provincias }}</td>
+                    <td>{{ pais.numero_habitantes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="">
+            <p>No hay países registrados en el sistema.</p>
+        </div>
+    {% endif %}
+</body>
+</html>

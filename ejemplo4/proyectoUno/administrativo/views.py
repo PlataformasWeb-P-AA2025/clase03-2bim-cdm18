@@ -89,3 +89,11 @@ def eliminar_estudiante(request, id):
     estudiante = Estudiante.objects.get(pk=id)
     estudiante.delete()
     return redirect(index)
+
+def ver_paises(request):
+    paises = Pais.objects.all()
+    # en la variable tipo diccionario llamada informacion_template
+    # se agregará la información que estará disponible
+    # en el template
+    informacion_template = {'paises': paises,'numero_paises': len(paises)}
+    return render(request, 'listado_paises.html', informacion_template)
