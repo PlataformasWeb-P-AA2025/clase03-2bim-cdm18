@@ -95,5 +95,19 @@ def ver_paises(request):
     # en la variable tipo diccionario llamada informacion_template
     # se agregará la información que estará disponible
     # en el template
-    informacion_template = {'paises': paises,'numero_paises': len(paises)}
+    informacion_template = {'paises': paises}
     return render(request, 'listado_paises.html', informacion_template)
+
+def crear_pais(request):
+    print(request)
+    if request.method == 'POST':
+        formulario = PaisForm(request.POST)
+        print(formulario.errors)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(index)
+    else:
+        formulario = PaisForm()
+    diccionario = {'formulario': formulario}
+
+    return render(request, 'agregar_paises.html', diccionario)

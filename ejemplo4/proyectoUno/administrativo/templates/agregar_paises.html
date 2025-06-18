@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<h2>Agregar Pais</h2>
 
-</body>
-</html>
+<form action="" method="post"> <!-- se redirije a quien lo llamo el action -->
+  {% csrf_token %}
+
+  {{ formulario.as_p }}
+
+  <p><input type='submit' value='Agregar'/></p>
+</form>
+
+[<a href="{% url 'index' %}">inicio</a>]

@@ -8,10 +8,6 @@
 <body>
     <h1>Listado de Países</h1>
 
-    <div class="">
-        <p>Total de países: {{ numero_paises }}</p>
-    </div>
-
     {% if paises %}
         <table>
             <thead>
@@ -40,3 +36,6 @@
     {% endif %}
 </body>
 </html>
+
+[<a href="{% url 'crear_pais' %}">Agregar un pais</a>]
+[<a href="{% url 'index' %}">Ver estudiantes</a>]
