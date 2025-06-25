@@ -4,6 +4,7 @@
 <hr>
 [<a href="{% url 'crear_matricula' %}">nuevo</a>]
 <hr>
+
 <table border="1px">
     <tr>
         <th><b>Estudiante</b></th>
@@ -17,58 +18,41 @@
                 {{ e.estudiante.nombre }}
                 [<a href="{% url 'detalle_estudiante' e.estudiante.id %}">+</a>]
             </td>
-            <td>
-                {{ e.modulo.nombre }}
-            </td>
-            <td>
-                {{ e.comentario }}
-            </td>
+            <td>{{ e.modulo.nombre }}</td>
+            <td>{{ e.comentario }}</td>
             <td>
                 [<a href="{% url 'detalle_matricula' e.id %}">ver</a>]
                 [<a href="{% url 'editar_matricula' e.id %}">editar</a>]
             </td>
         </tr>
     {% endfor %}
-
 </table>
 
-
-<h1>Listado de Estudiantes</h1>
+<h1>Lista de Estudiantes</h1>
 <hr>
 <h3>Número de estudiantes {{ numero_estudiantes }}</h3>
 
 <table border="1px">
-  <tr>
-    <th><b>Nombre</b></th>
-    <th><b>Apellido</b></th>
-    <th><b>Tipo</b></th>
-    <th><b>Edad</b></th>
-    <th><b>Matrículas</b></th>
-  </tr>
-  {% for e in matriculas %}
-  <tr>
-    <td>
-      {{e.estudiante.nombre}}
-      <!--[<a href="{% url 'detalle_estudiante' e.estudiante.id %}">+</a>]-->
-    </td>
-    <td>
-      {{e.estudiante.apellido}}
-    </td>
-    <td>
-      {{e.estudiante.tipo_estudiante}}
-    </td>
-    <td>
-      {{e.estudiante.edad}}
-    </td>
-    <td>
-        Modulo: {{ e.modulo.nombre }} <br>
-        Costo: {{ e.matricula.costo}} <br>
-
-
-      <!-- [<a href="{% url 'detalle_matricula' e.id %}">ver</a>]
-      [<a href="{% url 'editar_matricula' e.id %}">editar</a>] -->
-    </td>
-  </tr>
-  {% endfor %}
-
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Tipo</th>
+        <th>Edad</th>
+        <th>Matrículas</th>
+    </tr>
+    {% for e in estudiantes %}
+        <tr>
+            <td>{{ e.nombre }}</td>
+            <td>{{ e.apellido }}</td>
+            <td>{{ e.tipo_estudiante }}</td> <!-- puede usarse get_tipo_estudiante_display para mayor presentacion-->
+            <td>{{ e.edad }}</td>
+            <td>
+                {% for m in e.lasmatriculas.all %}
+                    Módulo: {{ m.modulo.nombre }} <br>
+                    Costo: {{ m.costo }} <br><br>
+                {% endfor %}
+                Costo Total: {{ e.costo_total_matriculas }}
+            </td>
+        </tr>
+    {% endfor %}
 </table>

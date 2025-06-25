@@ -17,11 +17,16 @@ def index(request):
     estudiantes = Estudiante.objects.all()
 
     titulo = "Listado de matriculas"
-    informacion_template = {'matriculas': matriculas,
-    'numero_matriculas': len(matriculas), 'mititulo': titulo,
-    'numero_estudiantes': len(estudiantes)}
+    informacion_template = {
+        'matriculas': matriculas,
+        'numero_matriculas': len(matriculas),
+        'mititulo': titulo,
+        'numero_estudiantes': len(estudiantes),
+        'estudiantes': estudiantes,  # Asegúrate de pasar esta variable
+    }
 
     return render(request, 'index.html', informacion_template)
+
 
 
 def detalle_matricula(request, id):
@@ -30,7 +35,8 @@ def detalle_matricula(request, id):
     """
 
     matricula = Matricula.objects.get(pk=id)
-    informacion_template = {'matricula': matricula, 'costo': matricula.costo}
+
+    informacion_template = {'matricula': matricula}
     return render(request, 'detalle_matricula.html', informacion_template)
 
 
