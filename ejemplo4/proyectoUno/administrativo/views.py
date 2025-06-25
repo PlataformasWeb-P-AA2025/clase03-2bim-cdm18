@@ -77,7 +77,7 @@ def editar_estudiante(request, id):
             formulario.save()
             return redirect(index)
     else:
-        formulario = EstudianteForm(instance=estudiante)
+        formulario = EstudianteForm(instance=estudiante) # formulario se crea lleno
     diccionario = {'formulario': formulario}
 
     return render(request, 'editarEstudiante.html', diccionario)
@@ -88,7 +88,7 @@ def eliminar_estudiante(request, id):
     """
     estudiante = Estudiante.objects.get(pk=id)
     estudiante.delete()
-    return redirect(index)
+    return redirect(index) # recomendado cambiar de estado pero tambien se puede borrar
 
 def ver_paises(request):
     paises = Pais.objects.all()
